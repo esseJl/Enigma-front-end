@@ -1,0 +1,25 @@
+.candle-card {
+  padding: 74px 0 0 0;
+  margin: 0;
+}
+
+mat-card {
+  margin: 0 0.5rem;
+}
+
+.main-section {
+  padding: 4px 0 0 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 200px;
+  height: auto;
+  margin: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  box-sizing: border-box;
+}

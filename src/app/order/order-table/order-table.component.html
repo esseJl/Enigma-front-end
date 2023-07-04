@@ -1,0 +1,310 @@
+<table mat-table [dataSource]="orders"
+       matSort (matSortChange)="sortData($event)"
+       multiTemplateDataRows>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- date Column -->
+  <ng-container matColumnDef="date" sticky>
+    <th mat-header-cell mat-sort-header="date" *matHeaderCellDef> date</th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+
+  <!-- emaOpen Column -->
+  <ng-container matColumnDef="emaOpen">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon> show_chart</mat-icon>
+      O
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon [ngClass]="element.emaOpen?'text-success':'text-danger'">
+        {{element.emaOpen ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+
+  <!-- emaHigh Column -->
+  <ng-container matColumnDef="emaHigh">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon> show_chart</mat-icon>
+      H
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon [ngClass]="element.emaHigh?'text-success':'text-danger'">
+        {{element.emaHigh ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+
+  <!-- emaLow Column -->
+  <ng-container matColumnDef="emaLow">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon> show_chart</mat-icon>
+      L
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon [ngClass]="element.emaLow ?'text-success':'text-danger'">
+        {{element.emaLow ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+
+  <!-- emaClose Column -->
+  <ng-container matColumnDef="emaClose">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon> show_chart</mat-icon>
+      C
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon [ngClass]="element.emaClose ?'text-success':'text-danger'">
+        {{element.emaClose ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+
+  <!-- ema Column -->
+  <ng-container matColumnDef="ema">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon> show_chart</mat-icon>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.ema}} </td>
+  </ng-container>
+
+  <!-- condition Column -->
+  <ng-container matColumnDef="condition">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>condition</mat-label>
+        <mat-select [(value)]="conditions" (valueChange)="change()" multiple>
+          <mat-option *ngFor="let condition of conditionList" [value]="condition">{{condition}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.condition}} </td>
+  </ng-container>
+
+  <!-- satWeeklyOpen Column -->
+  <ng-container matColumnDef="satWeeklyOpen">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 90px;">
+        <mat-label>sat<span class="text-warning">O</span>Weekly</mat-label>
+        <mat-select [(value)]="satWeeklyOpen" (valueChange)="change()" multiple>
+          <mat-option *ngFor="let sat of saturationList" [value]="sat">{{sat}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.satWeeklyOpen}} </td>
+  </ng-container>
+
+  <!-- satWeeklyHigh Column -->
+  <ng-container matColumnDef="satWeeklyHigh">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 90px;">
+        <mat-label>sat<span class="text-primary">H</span>Weekly</mat-label>
+        <mat-select [(value)]="satWeeklyHigh" (valueChange)="change()" multiple>
+          <mat-option *ngFor="let sat of saturationList" [value]="sat">{{sat}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.satWeeklyHigh}} </td>
+  </ng-container>
+
+  <!-- satWeeklyLow Column -->
+  <ng-container matColumnDef="satWeeklyLow">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 90px;">
+        <mat-label>sat<span class="text-danger">L</span>Weekly</mat-label>
+        <mat-select [(value)]="satWeeklyLow" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let sat of saturationList" [value]="sat">{{sat}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.satWeeklyLow}} </td>
+  </ng-container>
+
+  <!-- indexDailyOpen Column -->
+  <ng-container matColumnDef="indexDailyOpen">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-warning">O</span>Daily</mat-label>
+        <mat-select [(value)]="indexDailyOpen" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexDailyOpen}} </td>
+  </ng-container>
+
+
+  <!-- indexDailyHigh Column -->
+  <ng-container matColumnDef="indexDailyHigh">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-primary">H</span>Daily</mat-label>
+        <mat-select [(value)]="indexDailyHigh" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexDailyHigh}} </td>
+  </ng-container>
+
+  <!-- indexDailyLow Column -->
+  <ng-container matColumnDef="indexDailyLow">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-danger">L</span>Daily</mat-label>
+        <mat-select [(value)]="indexDailyLow" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexDailyLow}} </td>
+  </ng-container>
+
+
+  <!-- indexDailyClose Column -->
+  <ng-container matColumnDef="indexDailyClose">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-info">C</span>Daily</mat-label>
+        <mat-select [(value)]="indexDailyClose" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexDailyClose}} </td>
+  </ng-container>
+
+  <!-- indexWeeklyOpen Column -->
+  <ng-container matColumnDef="indexWeeklyOpen">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-warning">O</span>Weekly</mat-label>
+        <mat-select [(value)]="indexWeeklyOpen" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexWeeklyOpen}} </td>
+  </ng-container>
+
+
+  <!-- indexWeeklyHigh Column -->
+  <ng-container matColumnDef="indexWeeklyHigh">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-primary">H</span>Weekly</mat-label>
+        <mat-select [(value)]="indexWeeklyHigh" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexWeeklyHigh}} </td>
+  </ng-container>
+
+  <!-- indexWeeklyLow Column -->
+  <ng-container matColumnDef="indexWeeklyLow">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-danger">L</span>Weekly</mat-label>
+        <mat-select [(value)]="indexWeeklyLow" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexWeeklyLow}} </td>
+  </ng-container>
+
+
+  <!-- indexWeeklyClose Column -->
+  <ng-container matColumnDef="indexWeeklyClose">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 70px;">
+        <mat-label>i<span class="text-info">C</span>Weekly</mat-label>
+        <mat-select [(value)]="indexWeeklyClose" (valueChange)="change()" multiple>
+
+          <mat-option *ngFor="let index of indexList" [value]="index">{{index}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.indexWeeklyClose}} </td>
+  </ng-container>
+
+  <!-- profit Column -->
+  <ng-container matColumnDef="profit">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field appearance="standard" style="width: 55px;">
+        <mat-label>Profit</mat-label>
+        <mat-select [(value)]="profit" (valueChange)="change()">
+          <mat-option>Any</mat-option>
+          <mat-option *ngFor="let profit of profitList" [value]="profit">{{profit}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.profit| number}} </td>
+  </ng-container>
+
+  <!-- distance Column -->
+  <ng-container matColumnDef="distance">
+    <th mat-header-cell *matHeaderCellDef> distance</th>
+    <td mat-cell *matCellDef="let element"> {{element.distance| currency: 'USD'}} </td>
+  </ng-container>
+
+  <!-- error Column -->
+  <ng-container matColumnDef="error">
+    <th mat-header-cell *matHeaderCellDef> error</th>
+    <td mat-cell *matCellDef="let element">
+      <span [ngClass]="element.error<0?'text-danger':'text-success'">
+      {{element?.error |number :'.1-3'}}
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button aria-label="expand row"
+              (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon>all_inclusive</mat-icon>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="accent"
+              (click)="edit(element); $event.stopPropagation()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn"
+              (click)="delete(element); $event.stopPropagation()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button color="accent"
+              (click)="showDetails(element); $event.stopPropagation()">
+        <mat-icon>details</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>
+
+

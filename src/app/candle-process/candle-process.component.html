@@ -1,0 +1,42 @@
+<div class="candle-custom-container rounded-5">
+  <div [ngClass]="(loading?'disable-content':'')">
+    <app-candle-week [candleWeekList]="candleWeekList" [candleDetail]="true"></app-candle-week>
+  </div>
+  <section class="fixed-progress-bar" *ngIf="loading">
+    <mat-progress-bar color="primary" mode="query"></mat-progress-bar>
+  </section>
+
+  <div class="top-0 start-0 bg-dark rounded-4 m-5 z-9999 position-absolute">
+    <button color="primary" mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+    <button color="primary" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="csv">
+        <mat-icon>cloud_download</mat-icon>
+        <span>CSV</span>
+      </button>
+      <button mat-menu-item (click)="showChart()">
+        <mat-icon>multiline_chart</mat-icon>
+        <span>Chart</span>
+      </button>
+      <mat-menu #csv="matMenu">
+        <button mat-menu-item (click)="getCandleWeekCsv()">
+          <mat-icon>date_range</mat-icon>
+          <span>Week</span>
+        </button>
+        <button mat-menu-item (click)="getCandleDayCsv()">
+          <mat-icon>today</mat-icon>
+          <span>Day</span>
+        </button>
+        <button mat-menu-item (click)="getCandleHourCsv()">
+          <mat-icon>av_timer</mat-icon>
+          <span>Hour</span>
+        </button>
+      </mat-menu>
+    </mat-menu>
+  </div>
+</div>
+

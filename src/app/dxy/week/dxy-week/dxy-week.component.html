@@ -1,0 +1,159 @@
+<table mat-table matSort
+       (matSortChange)="sortData($event)"
+       [dataSource]="dxyWeekList" multiTemplateDataRows
+       class="mat-elevation-z8">
+
+  <!-- Date Column -->
+  <ng-container matColumnDef="date" sticky>
+    <th mat-header-cell mat-sort-header="label" *matHeaderCellDef>date</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+  <!-- volume Column -->
+  <ng-container matColumnDef="volume">
+    <th mat-header-cell *matHeaderCellDef>Volume</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.volume}} </td>
+  </ng-container>
+
+  <!-- realOpenComputed Column -->
+  <ng-container matColumnDef="realOpenComputed">
+    <th mat-header-cell *matHeaderCellDef>open check</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon
+        [ngClass]="element.realOpenComputed == element.realOpen ? 'text-success' : 'text-danger'">
+        {{element.realOpenComputed == element.realOpen ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+  <!-- realOpen Column -->
+  <ng-container matColumnDef="realOpen">
+    <th mat-header-cell *matHeaderCellDef>realOpen</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.realOpen}} </td>
+  </ng-container>
+  <!-- preOpen Column -->
+  <ng-container matColumnDef="preOpen">
+    <th mat-header-cell *matHeaderCellDef>preOpen</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.preOpen}} </td>
+  </ng-container>
+
+  <!-- realHighComputed Column -->
+  <ng-container matColumnDef="realHighComputed">
+    <th mat-header-cell *matHeaderCellDef>high check</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon
+        [ngClass]="element.realHighComputed == element.realHigh ? 'text-success' : 'text-danger'">
+        {{element.realHighComputed == element.realHigh ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+  <!-- realHigh Column -->
+  <ng-container matColumnDef="realHigh">
+    <th mat-header-cell *matHeaderCellDef>realHigh</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.realHigh}} </td>
+  </ng-container>
+  <!-- preHigh Column -->
+  <ng-container matColumnDef="preHigh">
+    <th mat-header-cell *matHeaderCellDef>preHigh</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.preHigh}} </td>
+  </ng-container>
+
+  <!-- realLowComputed Column -->
+  <ng-container matColumnDef="realLowComputed">
+    <th mat-header-cell *matHeaderCellDef>low check</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon
+        [ngClass]="element.realLowComputed == element.realLow ? 'text-success' : 'text-danger'">
+        {{element.realLowComputed == element.realLow ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+  <!-- realLow Column -->
+  <ng-container matColumnDef="realLow">
+    <th mat-header-cell *matHeaderCellDef>realLow</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.realLow}} </td>
+  </ng-container>
+  <!-- preLow Column -->
+  <ng-container matColumnDef="preLow">
+    <th mat-header-cell *matHeaderCellDef>preLow</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.preLow}} </td>
+  </ng-container>
+
+  <!-- realCloseComputed Column -->
+  <ng-container matColumnDef="realCloseComputed">
+    <th mat-header-cell *matHeaderCellDef>close check</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon
+        [ngClass]="element.realCloseComputed == element.realClose ? 'text-success' : 'text-danger'">
+        {{element.realCloseComputed == element.realClose ? 'check_circle' : 'cancel'}}
+      </mat-icon>
+    </td>
+  </ng-container>
+  <!-- realClose Column -->
+  <ng-container matColumnDef="realClose">
+    <th mat-header-cell *matHeaderCellDef>realClose</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.realClose}} </td>
+  </ng-container>
+  <!-- preClose Column -->
+  <ng-container matColumnDef="preClose">
+    <th mat-header-cell *matHeaderCellDef>preClose</th>
+    <td mat-cell
+        *matCellDef="let element"> {{element.preClose}} </td>
+  </ng-container>
+
+  <!-- action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>action</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="accent"
+              (click)="edit(element); $event.stopPropagation()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn"
+              (click)="delete(element); $event.stopPropagation()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button aria-label="expand row"
+              (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="table-candle-list">
+          <app-dxy-day [dxyDayDataSource]="element?.dxyDayList"></app-dxy-day>
+        </div>
+
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+

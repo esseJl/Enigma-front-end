@@ -1,0 +1,446 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~material-design-icons/iconfont/material-icons.css';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #424242 !important;
+}
+
+
+.high-color {
+  background: #3966f6;
+  color: white;
+  border-radius: 5px;
+}
+
+.low-color {
+  background: #7104f5;
+  color: white;
+  border-radius: 5px;
+}
+
+.close-color {
+  background: #fa690f;
+  color: white;
+  border-radius: 5px;
+}
+
+.particles-js {
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+}
+
+.toolbar-bg {
+  padding: 0;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.01);
+  box-shadow: 0 0 32px 0 rgba(15, 15, 16, 0.037);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: none;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.candle-custom-container {
+  margin: 0;
+  padding: 64px 0 0 0;
+  justify-content: center;
+  display: block;
+  flex: content;
+  align-items: center;
+  height: auto;
+  width: auto;
+  overflow-y: visible;
+  overflow-x: scroll;
+  box-shadow: 0 0 40px rgba(194, 24, 91, 0.7);
+}
+
+.fixed-progress-bar {
+  position: fixed;
+  top: 50%;
+  z-index: 999;
+  width: 95%;
+  height: auto;
+  border-radius: 20px;
+  background: #c2185b;
+  margin: 0 2.2rem;
+}
+
+.fixed-progress-bar mat-progress-bar {
+  height: 0.8rem;
+  border-radius: 20px;
+}
+
+.fixed-option-btn-container {
+  display: inline-flex;
+  position: fixed;
+  top: 0.8rem;
+  right: 3rem;
+  width: auto;
+  height: auto;
+  z-index: 1999;
+  border-radius: 25px;
+  color: white;
+  /*box-shadow: 0 0 5px rgba(169, 169, 169, 0.18);*/
+}
+
+.z-2000 {
+  z-index: 2000;
+}
+
+.fixed-option-container {
+  display: inline-flex;
+  position: fixed;
+  top: 0.2rem;
+  margin: 0;
+  padding: 0;
+  left: 5rem;
+  width: auto;
+  height: auto;
+  z-index: 999;
+  color: white;
+}
+
+.option-search-st {
+  right: -50px;
+  margin: 0;
+  padding: 0;
+}
+
+.option-search-report {
+  margin: 0.2rem;
+  padding: 1.2rem;
+  width: auto;
+  height: 50px;
+  border-radius: 15px;
+}
+
+.card-input {
+  box-shadow: 0 0 30px #c2185b;
+  cursor: pointer;
+  z-index: 999;
+  display: inline-block;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.disable-content {
+  pointer-events: none;
+  opacity: 0.6;
+  filter: blur(3px);
+}
+
+.minimize {
+  max-height: 0;
+}
+
+mat-form-field {
+  width: 100%;
+  padding: 1rem 0;
+}
+
+
+td.mat-cell, th.mat-header-cell {
+  margin: 0;
+  padding: 0 1rem !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: 'Select file';
+  display: inline;
+  background: #e35e92;
+  border-radius: 1rem;
+  padding: 0.5rem 0.5rem;
+  margin: 0.5rem 0.5rem;
+  text-shadow: 0 0 20px #fff;
+  color: white;
+  cursor: pointer;
+}
+
+
+.custom-file-input:hover::before {
+  border: 1px solid #c2185b;
+  background: #c2185b;
+}
+
+.color-primary {
+  color: #c2185b;
+}
+
+.custom-file-input:active::before {
+  background: #c2185b;
+}
+
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.mat-tab-label {
+  background-color: #424242;
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+}
+
+.text-gradient {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Apple Braille", serif;
+  background: linear-gradient(270deg, #c2185b, #c2185b, #424242, #424242);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-size: 600% 600%;
+  animation: gradient 7.5s ease infinite;
+  z-index: 1;
+}
+
+.box {
+  width: 35px;
+  height: 35px;
+  color: #c2185b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*transition: 0.5s ease-in-out;*/
+  /*animation: loader 15s infinite;*/
+  z-index: 100;
+  filter: sepia(20) invert() brightness(200);
+}
+
+.h-250px {
+  height: auto;
+  max-height: 250px;
+}
+
+
+@keyframes loader {
+  0% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: y 90deg;
+    scale: 0.5;
+  }
+  50% {
+    rotate: 180deg;
+  }
+  75% {
+    rotate: x 270deg;
+    border-radius: 50%;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+
+/*scroll bar*/
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-corner {
+  background-image: url(http://i.stack.imgur.com/FguQn.png?corner.png);
+  background-repeat: no-repeat;
+}
+
+::-webkit-resizer {
+  background-image: url(http://i.stack.imgur.com/aKKDY.png?resizer.png);
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+::-webkit-scrollbar-button:start {
+  display: none;
+}
+
+::-webkit-scrollbar-button:end {
+  display: block;
+}
+
+::-webkit-scrollbar:horizontal {
+  -webkit-border-image: url(http://i.stack.imgur.com/NQ2K6.png?horizontal-button.png) 0 2 0 2;
+  border-color: transparent;
+  border-width: 0 2px;
+  background-image: url(http://i.stack.imgur.com/8xDbU.png?horizontal-button-background.png);
+  background-repeat: repeat-x;
+}
+
+::-webkit-scrollbar:horizontal:corner-present {
+  border-right-width: 0;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  -webkit-border-image: url(http://i.stack.imgur.com/YQRD7.png?horizontal-thumb.png) 0 15 0 15;
+  border-color: transparent;
+  border-width: 0 15px;
+  min-width: 20px;
+}
+
+::-webkit-scrollbar-track-piece:horizontal:start {
+  margin-left: 6px;
+}
+
+::-webkit-scrollbar-track-piece:horizontal:end {
+  margin-right: -6px;
+}
+
+::-webkit-scrollbar-track-piece:horizontal:decrement {
+  -webkit-border-image: url(http://i.stack.imgur.com/p9yMk.png?horizontal-track.png) 0 15 0 15;
+  border-color: transparent;
+  border-width: 0 0 0 15px;
+}
+
+::-webkit-scrollbar-track-piece:horizontal:increment {
+  -webkit-border-image: url(http://i.stack.imgur.com/p9yMk.png?horizontal-track.png) 0 15 0 15;
+  border-color: transparent;
+  border-width: 0 15px 0 0;
+}
+
+::-webkit-scrollbar-button:horizontal {
+  width: 21px;
+  -webkit-border-image: url(http://i.stack.imgur.com/NQ2K6.png?horizontal-button.png) 0 2 0 2;
+  border-color: transparent;
+  border-width: 0 2px;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement {
+  background-image: url(http://i.stack.imgur.com/dGOKL.png?horizontal-decrement-arrow.png), url(http://i.stack.imgur.com/8xDbU.png?horizontal-button-background.png);
+  background-repeat: no-repeat, repeat-x;
+  background-position: 7px 4px, 0 0;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement:active {
+  -webkit-border-image: url(http://i.stack.imgur.com/gT5BM.png?horizontal-button-active.png) 0 2 0 2;
+  background-image: url(http://i.stack.imgur.com/dGOKL.png?horizontal-decrement-arrow.png), url(http://i.stack.imgur.com/RDf8L.png?horizontal-button-background-active.png);
+}
+
+::-webkit-scrollbar-button:horizontal:increment {
+  background-image: url(http://i.stack.imgur.com/5rJr5.png?horizontal-increment-arrow.png), url(http://i.stack.imgur.com/8xDbU.png?horizontal-button-background.png);
+  background-repeat: no-repeat, repeat-x;
+  width: 16px;
+  border-left-width: 0;
+  background-position: 3px 4px, 0 0;
+}
+
+::-webkit-scrollbar-button:horizontal:increment:active {
+  -webkit-border-image: url(http://i.stack.imgur.com/gT5BM.png?horizontal-button-active.png) 0 2 0 2;
+  background-image: url(http://i.stack.imgur.com/5rJr5.png?horizontal-increment-arrow.png), url(http://i.stack.imgur.com/RDf8L.png?horizontal-button-background-active.png);
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment:corner-present {
+  border-right-width: 0;
+  width: 15px;
+}
+
+::-webkit-scrollbar:vertical {
+  -webkit-border-image: url(http://i.stack.imgur.com/NdaTT.png?vertical-button.png) 2 0 2 0;
+  border-color: transparent;
+  border-width: 2px 0;
+  background-image: url(http://i.stack.imgur.com/p7j9a.png?vertical-button-background.png);
+  background-repeat: repeat-y;
+}
+
+::-webkit-scrollbar:vertical:corner-present {
+  border-bottom-width: 0;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  -webkit-border-image: url(http://i.stack.imgur.com/rPEsZ.png?vertical-thumb.png) 15 0 15 0;
+  border-color: transparent;
+  border-width: 15px 0;
+  min-height: 20px;
+}
+
+::-webkit-scrollbar-track-piece:vertical:start {
+  margin-top: 6px;
+}
+
+::-webkit-scrollbar-track-piece:vertical:end {
+  margin-bottom: -6px;
+}
+
+::-webkit-scrollbar-track-piece:vertical:decrement {
+  -webkit-border-image: url(http://i.stack.imgur.com/Rb6ru.png?vertical-track.png) 15 0 15 0;
+  border-color: transparent;
+  border-width: 15px 0 0 0;
+}
+
+::-webkit-scrollbar-track-piece:vertical:increment {
+  -webkit-border-image: url(http://i.stack.imgur.com/Rb6ru.png?vertical-track.png) 15 0 15 0;
+  border-color: transparent;
+  border-width: 0 0 15px 0;
+}
+
+::-webkit-scrollbar-button:vertical {
+  height: 21px;
+  -webkit-border-image: url(http://i.stack.imgur.com/NdaTT.png?vertical-button.png) 2 0 2 0;
+  border-color: transparent;
+  border-width: 2px 0;
+}
+
+::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url(http://i.stack.imgur.com/KQvwk.png?vertical-decrement-arrow.png), url(http://i.stack.imgur.com/p7j9a.png?vertical-button-background.png);
+  background-repeat: no-repeat, repeat-y;
+  background-position: 4px 7px, 0 0;
+}
+
+::-webkit-scrollbar-button:vertical:decrement:active {
+  -webkit-border-image: url(http://i.stack.imgur.com/uW3TL.png?vertical-button-active.png) 2 0 2 0;
+  background-image: url(http://i.stack.imgur.com/KQvwk.png?vertical-decrement-arrow.png), url(http://i.stack.imgur.com/puDsH.png?vertical-button-background-active.png);
+}
+
+::-webkit-scrollbar-button:vertical:increment {
+  background-image: url(http://i.stack.imgur.com/UjkVR.png?vertical-increment-arrow.png), url(http://i.stack.imgur.com/p7j9a.png?vertical-button-background.png);
+  background-repeat: no-repeat, repeat-y;
+  height: 16px;
+  border-top-width: 0;
+  background-position: 4px 5px, 0 0;
+}
+
+::-webkit-scrollbar-button:vertical:increment:active {
+  -webkit-border-image: url(http://i.stack.imgur.com/uW3TL.png?vertical-button-active.png) 2 0 2 0;
+  background-image: url(http://i.stack.imgur.com/UjkVR.png?vertical-increment-arrow.png), url(http://i.stack.imgur.com/puDsH.png?vertical-button-background-active.png);
+}
+
+::-webkit-scrollbar-button:vertical:end:increment:corner-present {
+  border-bottom-width: 0;
+  height: 15px;
+}
+
+::-webkit-scrollbar:disabled {
+  background: red;
+  -webkit-border-image: none;
+  display: none;
+}
+
+.z-9999 {
+  z-index: 9999;
+}
+
+

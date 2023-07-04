@@ -1,0 +1,81 @@
+<div class="home-container d-flex align-items-center justify-content-center flex-wrap">
+  <div id="particles-js" class="particles-js"></div>
+  <div class="card d-flex position-relative flex-column">
+    <form #form="ngForm" (ngSubmit)="submit(form)">
+      <div class="row rounded-4 p-1">
+        <div class="col-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Select start of week</mat-label>
+            <mat-select required name="startId" ngModel #startId (selectionChange)="changeStart($event.value)">
+              <mat-option *ngFor="let week of weeks;index as i;" [value]="week.id" [disabled]="i==weeks.length-1">
+                <span>
+                  <span>
+                    {{week.date}}
+                  </span>
+                  <small class="text-muted">
+                    {{ week.date | date:'fullDate' }}
+                  </small>
+                </span>
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+        </div>
+        <div class="col-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Select end of week</mat-label>
+            <mat-select required [disabled]="!startId" name="endId" ngModel #endId>
+              <mat-option *ngFor="let week of endSelection" [value]="week.id">
+                <span>
+                  <span>
+                    {{week.date}}
+                  </span>
+                  <small class="text-muted">
+                    {{ week.date | date:'fullDate' }}
+                  </small>
+                </span>
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+        </div>
+        <div class="col-12 text-center">
+          <button type="submit" [disabled]="form.invalid" mat-stroked-button class="text-light">Process</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!--<div class="break"></div>-->
+
+  <!--<div class="card d-flex position-relative flex-column" routerLink="/hour">
+    <div class="p-3 m-1 text-center">
+      <mat-icon class="mat-icon">av_timer</mat-icon>
+      <p class="text-center text-light p-3 m-1">Candle Hour</p>
+    </div>
+    <div class="content">
+      <p class="text-light">modification Hour data</p>
+    </div>
+  </div>
+  <div class="card d-flex position-relative flex-column" routerLink="/day">
+    <div class="p-3 m-1 text-center">
+      <mat-icon class="mat-icon">today</mat-icon>
+      <p class="text-center text-light p-3 m-1">Candle Day</p>
+    </div>
+    <div class="content">
+      <p class="text-light">modification Day data</p>
+    </div>
+  </div>
+  <div class="card  d-flex position-relative flex-column" routerLink="/week">
+    <div class="p-3 m-1 text-center">
+      <mat-icon class="mat-icon">date_range</mat-icon>
+      <p class="text-center text-light p-3 m-1">Candle Week</p>
+    </div>
+    <div class="content">
+      <p class="text-light">modification Week data</p>
+    </div>
+  </div>-->
+  <div class="position-fixed text-center align-content-center bottom-0">
+    <!--<img src="assets/enigma.png"
+         style="filter: sepia(20) invert() brightness(200); transform: rotate(90deg)" width="100%" alt="enigma">-->
+  </div>
+</div>

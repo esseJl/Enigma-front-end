@@ -1,0 +1,204 @@
+<form class="container-fluid" #form="ngForm" (ngSubmit)="submit(form)">
+  <h2 class="text-center" mat-dialog-title>{{mood}}  </h2>
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <input type="hidden" name="id" [(ngModel)]="candleHourTemp.id">
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input type="text"
+                 required
+                 readonly
+                 #date="ngModel"
+                 name="date"
+                 [(ngModel)]="candleHourTemp.date"
+                 matInput
+                 [ngxMatDatetimePicker]="picker1"
+                 placeholder="Choose a date">
+          <mat-error *ngIf="date.hasError('required')">
+            Date <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="date.hasError('err')">
+            {{date.errors['err']}}
+          </mat-error>
+
+          <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker [disabled]="false" #picker1></ngx-mat-datetime-picker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Volume</mat-label>
+          <input required
+                 #volume="ngModel"
+                 name="volume"
+                 [(ngModel)]="candleHourTemp.volume"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="volume.hasError('required')">
+            realOpen <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="volume.hasError('err')">
+            {{volume.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <!--real open-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realOpen</mat-label>
+          <input required
+                 #realOpen="ngModel"
+                 name="realOpen"
+                 [(ngModel)]="candleHourTemp.realOpen"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="realOpen.hasError('required')">
+            realOpen <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realOpen.hasError('err')">
+            {{realOpen.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!--real high-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realHigh</mat-label>
+          <input required
+                 #realHigh="ngModel"
+                 name="realHigh"
+                 [(ngModel)]="candleHourTemp.realHigh"
+                 type="number" matInput>
+          <mat-error *ngIf="realHigh.hasError('required')">
+            realHigh <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realHigh.hasError('err')">
+            {{realHigh.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!--real low-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realLow</mat-label>
+          <input required
+                 #realLow="ngModel"
+                 name="realLow"
+                 [(ngModel)]="candleHourTemp.realLow"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="realLow.hasError('required')">
+            realLow <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realLow.hasError('err')">
+            {{realLow.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!--real close-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realClose</mat-label>
+          <input required
+                 #realClose="ngModel"
+                 name="realClose"
+                 [(ngModel)]="candleHourTemp.realClose"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="realClose.hasError('required')">
+            realClose <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realClose.hasError('err')">
+            {{realClose.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <!--pre open-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preOpen</mat-label>
+          <input required
+                 #preOpen="ngModel"
+                 name="preOpen"
+                 [(ngModel)]="candleHourTemp.preOpen"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preOpen.hasError('required')">
+            preOpen <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preOpen.hasError('err')">
+            {{preOpen.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!--pre high-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preHigh</mat-label>
+          <input required
+                 #preHigh="ngModel"
+                 name="preHigh"
+                 [(ngModel)]="candleHourTemp.preHigh"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preHigh.hasError('required')">
+            preHigh <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preHigh.hasError('err')">
+            {{preHigh.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!--pre low-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preLow</mat-label>
+          <input required
+                 #preLow="ngModel"
+                 name="preLow"
+                 [(ngModel)]="candleHourTemp.preLow"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preLow.hasError('required')">
+            preLow <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preLow.hasError('err')">
+            {{preLow.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!--pre close-->
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preClose</mat-label>
+          <input required
+                 #preClose="ngModel"
+                 name="preClose"
+                 [(ngModel)]="candleHourTemp.preClose"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preClose.hasError('required')">
+            preClose <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preClose.hasError('err')">
+            {{preClose.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <mat-progress-bar class="p-1 m-1" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <button type="button" color="primary" mat-icon-button mat-dialog-close>
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <button color="primary" mat-icon-button type="submit" [disabled]="form.invalid">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</form>

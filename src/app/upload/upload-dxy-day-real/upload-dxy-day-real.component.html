@@ -1,0 +1,122 @@
+<div class="pt-5 pb-5"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-12" [ngClass]="value!=bufferValue?'disable-content':''">
+      <div class="text-light alert bg-dark p-4 mb-2">
+        <h1 class="text-center text-info">
+          Import <span class="text-danger">DXY DAY</span> with <span
+          class="text-danger">real & volume</span> fields
+        </h1>
+        <div class="row">
+          <div class="col-8 p-3 border border-secondary rounded-3">
+            <p>CSV format -&gt;</p>
+            <span class="text-muted"> Date <small class="text-danger">(yyyy.MM.dd)</small> , realOpen  , realHigh , realLow , realClose , volume</span>
+          </div>
+          <div class="col-4">
+            <label for="input-file" class="form-label">Import from CSV</label>
+            <input class="form-control"
+                   (change)="onUpload($event.target); file.value=''; "
+                   #file
+                   type="file"
+                   name="file"
+                   id="input-file"
+                   accept="text/csv"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 p-3">
+      <h1 *ngIf="bufferValue>0 && bufferValue!=value" class="color-primary text-center">
+        <i>Please wait...
+          {{value}}
+          of {{bufferValue}}
+        </i></h1>
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+      <mat-progress-bar mode="determinate" *ngIf="bufferValue>0 && bufferValue!=value" color="primary"
+                        [value]="(value*100/bufferValue)"></mat-progress-bar>
+    </div>
+  </div>
+  <div class="row text-light">
+    <div class="col-12" *ngIf="failedLoad.length>0"
+         [ngClass]="(savedItems.length>0|| errors.length>0?'disable-content minimize':'')">
+      <div class="card w-100">
+        <div class="card-header bg-danger text-center">
+          {{failedLoad.length}}  Items Failed to load !
+        </div>
+        <div class="overflow-scroll h-250px">
+          <ul class="list-group list-group-flush" *ngIf="failedLoad.length>0">
+            <li *ngFor="let failed of failedLoad" class="list-group-item">{{failed}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="loadedItems.length>0"
+         [ngClass]="(savedItems.length>0|| errors.length>0?'disable-content minimize':'')">
+      <div class="card w-100">
+        <div class="card-header bg-primary text-center">
+          {{loadedItems.length}} Items Loaded ;
+          <span>
+            Are you sure to
+            <button mat-raised-button class="bg-success" (click)="upload()">
+              <span> Upload </span>
+              <mat-icon>cloud_upload</mat-icon>
+            </button>
+          </span>
+        </div>
+        <div class="overflow-scroll h-250px">
+          <ul class="list-group list-group-flush" *ngIf="loadedItems.length>0">
+            <li *ngFor="let item of loadedItems" class="list-group-item">
+              {{item?.date}} |
+              {{item?.realOpen | number : '1.2-2'}} |
+              {{item?.realHigh | number : '1.2-2'}} |
+              {{item?.realLow  | number : '1.2-2'}} |
+              {{item?.realClose| number : '1.2-2'}} |
+              {{item?.volume}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="savedItems.length>0">
+      <div class="card w-100">
+        <div class="card-header bg-success text-center">
+          {{savedItems.length}} items saved successfully.
+        </div>
+        <div class="overflow-scroll h-250px">
+          <ul class="list-group list-group-flush" *ngIf="savedItems.length>0">
+            <li *ngFor="let item of savedItems" class="list-group-item">
+              {{item?.date}} |
+              {{item?.realOpen | number : '1.2-2'}} |
+              {{item?.realHigh | number : '1.2-2'}} |
+              {{item?.realLow  | number : '1.2-2'}} |
+              {{item?.realClose| number : '1.2-2'}} |
+              {{item?.volume}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="errors.length>0">
+      <div class="card w-100">
+        <div class="card-header bg-danger text-center">
+          {{errors.length}} items failed to save !
+        </div>
+        <div class="overflow-scroll h-250px">
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let error of errors" class="list-group-item">
+              <p class="bg-danger text-light">{{error?.message}}</p>
+              <span *ngIf="error?.subErrors">
+              <span *ngFor="let sub of error?.subErrors">
+                   {{sub.field}} ->
+                rejectedValue: {{sub.rejectedValue}} ,
+                message: {{sub.message}}
+              </span>
+            </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

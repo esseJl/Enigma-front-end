@@ -1,0 +1,19 @@
+<div class="custom-container">
+  <section *ngIf="loading">
+    <mat-progress-bar color="primary" mode="query"></mat-progress-bar>
+  </section>
+  <div [ngClass]="(loading?'disable-content':'')">
+    <app-condition-list [Condition]="conditionList" (filter)="filter($event)"></app-condition-list>
+  </div>
+
+  <div class="fixed-option-btn-container">
+    <button mat-icon-button>
+      <mat-icon>cached</mat-icon>
+    </button>
+    <button mat-icon-button (click)="modification(null)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+

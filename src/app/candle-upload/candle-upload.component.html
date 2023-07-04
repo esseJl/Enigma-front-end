@@ -1,0 +1,26 @@
+<section class="fixed-progress-bar" *ngIf="loading">
+  <mat-progress-bar color="primary" mode="query"></mat-progress-bar>
+</section>
+<div class="container" >
+  <div class="row mt-5 p-5" [ngClass]="(loading?'disable-content':'')">
+  <div class="p-3 text-center card-input bg-secondary rounded-3">
+      <input class="custom-file-input"
+             #file
+             type="file"
+             name="file"
+             id="input-file"
+             accept="text/csv"
+             (change)="onUpload($event.target); file.value=''; "
+             multiple/>
+    </div>
+  </div>
+  <p class=" text-center text-primary">total : {{result.length}} readied</p>
+  <p class=" text-center text-primary">hour:{{candleHourList.length}} uploaded</p>
+  <p class=" text-center text-primary">day:{{candleDayList.length}} uploaded</p>
+
+
+</div>
+
+
+
+

@@ -1,0 +1,17 @@
+
+<span align="start" class="sticky-top rounded-2">
+  <mat-progress-bar class="p-1 m-1" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+  <button [ngClass]="(loading?'disable-content':'')" color="primary" mat-flat-button [mat-dialog-close]="candleDay.selectedOptions.selected">
+    <mat-icon>check_circle</mat-icon>
+  </button>
+
+</span>
+
+<mat-selection-list #candleDay class="overflow-scroll   p-2 rounded-2">
+      <mat-list-option color="primary" *ngFor="let candleDay of candleDayList" [value]="candleDay">
+        {{candleDay.date}}
+      </mat-list-option>
+</mat-selection-list>
+
+

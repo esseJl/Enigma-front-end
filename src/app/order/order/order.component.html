@@ -1,0 +1,96 @@
+<div>
+  <div class="table-container" [ngClass]="(loading?'disable-content':'')">
+    <app-order-table [orders]="orders"
+                     (onChange)="onChange($event)"
+                     (onDelete)="delete($event)"
+                     (onUpdate)="modification($event)"></app-order-table>
+  </div>
+  <section class="fixed-progress-bar" *ngIf="loading">
+    <mat-progress-bar color="primary" mode="query"></mat-progress-bar>
+  </section>
+
+  <div class="fixed-option-container">
+    <div>
+      <mat-form-field class="option-search-st" style="width: 90px;" appearance="fill">
+        <mat-label>Strategy :</mat-label>
+        <mat-select [value]="activeStrategy" (selectionChange)="strategyOnChange($event.value)">
+          <mat-option *ngFor="let strategy of strategies" [value]="strategy">
+            {{strategy}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="option-search-st" style="width: 170px;" appearance="fill">
+        <mat-label>From Date :</mat-label>
+        <input type="text"
+               readonly
+               matInput
+               name="fromDate"
+               (dateChange)="dateOnChange()"
+               [(ngModel)]="fromDate"
+               [matDatepicker]="dpFrom">
+        <mat-datepicker-toggle *ngIf="fromDate!=null" matSuffix (click)="clearFromDate()">
+          <mat-icon matDatepickerToggleIcon>clear</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="dpFrom"></mat-datepicker-toggle>
+        <mat-datepicker #dpFrom disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="option-search-st" style="width: 170px;" appearance="fill">
+        <mat-label>To Date :</mat-label>
+        <input type="text"
+               readonly
+               matInput
+               name="toDate"
+               (dateChange)="dateOnChange()"
+               [(ngModel)]="toDate"
+               [matDatepicker]="dpTo">
+        <mat-datepicker-toggle *ngIf="toDate!=null" matSuffix (click)="clearToDate()">
+          <mat-icon matDatepickerToggleIcon>clear</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="dpTo"></mat-datepicker-toggle>
+        <mat-datepicker #dpTo disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="option-search-report">
+      <ul *ngIf="report!=null" [ngClass]="(loading?'disable-content':'')">
+        <li>
+          balance :
+          <span [ngClass]="report?.balance>0?'bg-success':'bg-danger'">
+             {{report?.balance}} <small>pip</small>
+          </span>
+        </li>
+
+        <li>Win Rate =
+          <span
+            [ngClass]="{'bg-success':report?.winRate>=5,'bg-primary':report?.winRate<5&&report?.winRate>=3.5,'bg-info':report?.winRate<3.5&&report?.winRate>=2,'bg-warning':report?.winRate<2&&report?.winRate>1.2,'bg-danger':report?.winRate<=1.2}">
+            {{report?.winRate | number: '.1-3'}}
+          </span>
+          <span class="text-success">{{report?.totalProfitItems}}</span> /
+          <span class="text-danger">{{report?.totalLossItems}}</span>
+          <span class="text-warning"> except {{report?.totalFailed}}</span>
+          of {{report?.totalItems}}
+        </li>
+
+        <li class="text-success">total tp : {{report.totalProfits }} <small class="text-muted">pip</small></li>
+        <li class="text-danger"> total st : {{report.totalLosses }} <small class="text-muted">pip</small></li>
+
+      </ul>
+    </div>
+    <div class="fixed-option-btn-container">
+      <button *ngIf="!loading" mat-icon-button (click)="modification(null)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <div>
+        <button *ngIf="!loading" (click)="downloadCsv()" mat-icon-button [disabled]="downloadCsvLoading">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+        <span *ngIf="downloadCsvLoading">
+          <mat-progress-bar color="primary" mode="query"></mat-progress-bar>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

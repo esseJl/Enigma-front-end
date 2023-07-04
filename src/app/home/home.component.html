@@ -1,0 +1,169 @@
+<div class="row candle-card ">
+  <div class="col-4 p-0 m-0 d-flex justify-content-center">
+    <div class="" [ngClass]="(loading?'disable-content':'')">
+      <mat-card-header>
+        <mat-card-title><span class="text-muted">week : </span> <span class="text-white">{{candleWeek?.date}}</span>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <app-candle-temp [value]="candleWeek"></app-candle-temp>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </div>
+  </div>
+  <div class="col-4 p-0 m-0 d-flex justify-content-center">
+    <div [ngClass]="(loading?'disable-content':'')">
+      <mat-card-header>
+        <mat-card-title>
+          <span class="text-muted">day : </span>
+          <span class="text-white">{{candleWeek?.candleDayList[(candleWeek.candleDayList.length - 1)].date}}</span>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <app-candle-temp [value]="candleWeek?.candleDayList[(candleWeek.candleDayList.length - 1)]"></app-candle-temp>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </div>
+  </div>
+  <div class="col-4 p-0 m-0 d-flex justify-content-center">
+    <div [ngClass]="(loading?'disable-content':'')">
+      <mat-card-header>
+        <mat-card-title>
+          <span class="text-muted">hour :</span>
+          <span
+            class="text-white"> {{candleWeek?.candleDayList[(candleWeek.candleDayList.length - 1)].candleHourList[(candleWeek?.candleDayList[(candleWeek.candleDayList.length - 1)].candleHourList.length - 1)].date}}
+        </span>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <app-candle-temp
+            [value]="candleWeek?.candleDayList[(candleWeek.candleDayList.length - 1)].candleHourList[(candleWeek?.candleDayList[(candleWeek.candleDayList.length - 1)].candleHourList.length - 1)]"></app-candle-temp>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </div>
+  </div>
+</div>
+
+<div class="position-relative d-flex justify-content-center">
+  <mat-spinner *ngIf="loading" class=" position-absolute  top-50 z-9999"></mat-spinner>
+  <section class="main-section" [ngClass]="(loading?'disable-content':'')">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Week Slope Index</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+        <p class="card-text"></p>
+        <p class="card-text text-primary">
+          <span>{{weekSlopeIndex?.date}}</span>
+        </p>
+        <p class="card-text">Open : <span>{{weekSlopeIndex?.open}}</span></p>
+        <p class="card-text ">High : <span>{{weekSlopeIndex?.high}}</span></p>
+        <p class="card-text ">Low : <span>{{weekSlopeIndex?.low}}</span></p>
+        <p class="card-text ">Close : <span>{{weekSlopeIndex?.close}}</span></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Week Slope </h5>
+
+        <p class="card-text text-primary">
+          <span>{{weekSlope?.date}}</span>
+        </p>
+        <p class="card-text">Open : <span>{{weekSlope?.open}}</span></p>
+        <p class="card-text ">High : <span>{{weekSlope?.high}}</span></p>
+        <p class="card-text ">Low : <span>{{weekSlope?.low}}</span></p>
+        <p class="card-text ">Close : <span>{{weekSlope?.close}}</span></p>
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+          <span>init candle : </span>
+          <p>Open : {{weekSlope?.initialCandle?.open}}</p>
+          <p>High : {{weekSlope?.initialCandle?.high}}</p>
+          <p>Low : {{weekSlope?.initialCandle?.low}}</p>
+          <p>Close : {{weekSlope?.initialCandle?.close}}</p>
+        </h6>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Day Slope Index</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+        <p class="card-text"></p>
+        <p class="card-text text-primary">
+          <span>{{daySlopeIndex?.date}}</span>
+        </p>
+        <p class="card-text">Open : <span>{{daySlopeIndex?.open}}</span></p>
+        <p class="card-text ">High : <span>{{daySlopeIndex?.high}}</span></p>
+        <p class="card-text ">Low : <span>{{daySlopeIndex?.low}}</span></p>
+        <p class="card-text ">Close : <span>{{daySlopeIndex?.close}}</span></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Day Slope</h5>
+
+        <p class="card-text"></p>
+        <p class="card-text text-primary">
+          <span>{{daySlope?.date}}</span>
+        </p>
+        <p class="card-text">Open : <span>{{daySlope?.open}}</span></p>
+        <p class="card-text ">High : <span>{{daySlope?.high}}</span></p>
+        <p class="card-text ">Low : <span>{{daySlope?.low}}</span></p>
+        <p class="card-text ">Close : <span>{{daySlope?.close}}</span></p>
+
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+          <span>init candle : </span>
+          <p>Open : {{daySlope?.initialCandle?.open}}</p>
+          <p>High : {{daySlope?.initialCandle?.high}}</p>
+          <p>Low : {{daySlope?.initialCandle?.low}}</p>
+          <p>Close : {{daySlope?.initialCandle?.close}}</p>
+        </h6>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Hour Sat</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">week</h6>
+        <p class="card-text text-primary">
+          <span>{{hourSat?.week?.dateTime}}</span>
+        </p>
+        <p class="card-text">Open : <span>{{hourSat?.week?.open}}</span></p>
+        <p class="card-text ">High : <span>{{hourSat?.week?.high}}</span></p>
+        <p class="card-text ">Low : <span>{{hourSat?.week?.low}}</span></p>
+        <p class="card-text ">Close : <span>{{hourSat?.week?.close}}</span></p>
+
+        <h6 class="card-subtitle mb-2 text-body-secondary">day</h6>
+        <p class="card-text text-primary">
+          <span>{{hourSat?.day?.dateTime}}</span>
+        </p>
+        <p class="card-text">Open : <span>{{hourSat?.day?.open}}</span></p>
+        <p class="card-text ">High : <span>{{hourSat?.day?.high}}</span></p>
+        <p class="card-text ">Low : <span>{{hourSat?.day?.low}}</span></p>
+        <p class="card-text ">Close : <span>{{hourSat?.day?.close}}</span></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-primary">Hour Slope </h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+        <p class="card-text"></p>
+        <p class="card-text text-primary">
+          <span>{{hourSlope?.date}}</span>
+        </p>
+        <p class="card-text">Open : <span>{{hourSlope?.open}}</span></p>
+        <p class="card-text ">High : <span>{{hourSlope?.high}}</span></p>
+        <p class="card-text ">Low : <span>{{hourSlope?.low}}</span></p>
+        <p class="card-text ">Close : <span>{{hourSlope?.close}}</span></p>
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+          <span>init candle : </span>
+          <p>Open : {{hourSlope?.initialCandle?.open}}</p>
+          <p>High : {{hourSlope?.initialCandle?.high}}</p>
+          <p>Low : {{hourSlope?.initialCandle?.low}}</p>
+          <p>Close : {{hourSlope?.initialCandle?.close}}</p>
+        </h6>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+<div class="fixed-option-btn-container">
+  <button *ngIf="!loading" (click)="refresh()" mat-icon-button>
+    <mat-icon>cached</mat-icon>
+  </button>
+</div>

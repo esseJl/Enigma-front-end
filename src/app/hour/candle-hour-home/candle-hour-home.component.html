@@ -1,0 +1,28 @@
+<div class="custom-container">
+  <div [ngClass]="(loading?'disable-content':'')">
+    <app-candle-hour [candleHourSource]="candleHourList"
+                     [actionColumn]="true"
+                     (sort)="sort($event)"
+                     (deleteItem)="deleteCandle($event)"
+                     (editItem)="modification($event)">
+    </app-candle-hour>
+  </div>
+  <section class="fixed-progress-bar" *ngIf="loading">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  </section>
+
+  <div class="fixed-option-btn-container">
+    <button (click)="refresh(getHttpParams())" mat-icon-button>
+      <mat-icon>cached</mat-icon>
+    </button>
+    <button mat-icon-button (click)="modification(null)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<mat-paginator [ngClass]="(loading?'disable-content':'')" [length]="page?.totalElements"
+               [pageSize]="page?.size"
+               [pageIndex]="page?.currentPage"
+               (page)="changePage($event)"
+               showFirstLastButtons>
+</mat-paginator>

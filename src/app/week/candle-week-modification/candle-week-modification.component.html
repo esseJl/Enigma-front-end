@@ -1,0 +1,201 @@
+<form [formGroup]="candleWeek" (ngSubmit)="OnSubmit()" class="container-fluid">
+  <h2 class="text-center" mat-dialog-title>{{mood}}  </h2>
+  <mat-dialog-content>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose Date</mat-label>
+          <input type="text"
+                 required
+                 readonly
+                 matInput
+                 formControlName="date"
+                 (dateInput)="format($event.value)"
+                 [matDatepicker]="dp3">
+          <mat-error *ngIf="date.hasError('required')">
+            Date <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="date.hasError('err')">
+            {{date.errors['err']}}
+          </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Volume</mat-label>
+          <input required
+                 formControlName="volume"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="volume.hasError('required')">
+            Volume <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="volume.hasError('err')">
+            {{volume.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realOpen</mat-label>
+          <input required
+                 formControlName="realOpen"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="realOpen.hasError('required')">
+            realOpen <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realOpen.hasError('err')">
+            {{realOpen.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realHigh</mat-label>
+          <input required
+                 formControlName="realHigh"
+                 type="number" matInput>
+          <mat-error *ngIf="realHigh.hasError('required')">
+            realHigh <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realHigh.hasError('err')">
+            {{realHigh.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realLow</mat-label>
+          <input required
+                 formControlName="realLow"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="realLow.hasError('required')">
+            realLow <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realLow.hasError('err')">
+            {{realLow.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>realClose</mat-label>
+          <input required
+                 formControlName="realClose"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="realClose.hasError('required')">
+            realClose <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="realClose.hasError('err')">
+            {{realClose.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preOpen</mat-label>
+          <input formControlName="preOpen"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preOpen.hasError('required')">
+            preOpen <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preOpen.hasError('err')">
+            {{preOpen.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preHigh</mat-label>
+          <input formControlName="preHigh"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preHigh.hasError('required')">
+            preHigh <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preHigh.hasError('err')">
+            {{preHigh.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preLow</mat-label>
+          <input formControlName="preLow"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preLow.hasError('required')">
+            preLow <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preLow.hasError('err')">
+            {{preLow.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>preClose</mat-label>
+          <input formControlName="preClose"
+                 type="number"
+                 matInput>
+          <mat-error *ngIf="preClose.hasError('required')">
+            preClose <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="preClose.hasError('err')">
+            {{preClose.errors['err']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col rounded-3 p-1 m-1 bg-secondary">
+      <button type="button" (click)="addCandleDay()" color="primary" mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Candle day list
+          </mat-panel-title>
+          <mat-panel-description>
+            attached {{selectedCandleDays.length}} candle
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngIf="selectedCandleDays.length>0">
+          <mat-chip-list>
+            <mat-chip color="primary" selected *ngFor="let candleDay of selectedCandleDays"
+                      (removed)="removeCandleDay(candleDay)">
+              {{candleDay.date}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <p *ngIf="selectedCandleDays.length==0">did not set any candle yet</p>
+      </mat-expansion-panel>
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="center">
+    <mat-progress-bar class="p-1 m-1" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <button type="button" color="primary" mat-icon-button mat-dialog-close>
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <button color="primary" mat-icon-button type="submit" [disabled]="!candleWeek.valid">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</form>

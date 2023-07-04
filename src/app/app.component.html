@@ -1,0 +1,101 @@
+<div class="fixed-toolbar-section">
+  <mat-toolbar class="toolbar-bg">
+
+    <span>
+      <img src="assets/enigma.png" class="box" alt="Enigma">
+    </span>
+    <span>{{title}}</span>
+    <span class="example-spacer"></span>
+    <!--<button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>-->
+    <button class="z-2000" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+
+      <button mat-menu-item routerLinkActive="active" routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+
+      <button mat-menu-item routerLinkActive="active" routerLink="/conditions">
+        <mat-icon>edit</mat-icon>
+        <span>condition</span>
+      </button>
+
+      <button mat-menu-item routerLinkActive="active" routerLink="/orders">
+        <mat-icon>list_alt</mat-icon>
+        <span>Orders</span>
+      </button>
+
+
+      <button mat-menu-item [matMenuTriggerFor]="candles">
+        <mat-icon>chrome_reader_mode</mat-icon>
+        <span>XAUUSD</span>
+      </button>
+      <mat-menu #candles="matMenu">
+        <button mat-menu-item routerLinkActive="active" routerLink="/week">
+          <mat-icon>date_range</mat-icon>
+          <span>Week</span>
+        </button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/day">
+          <mat-icon>today</mat-icon>
+          <span>Day</span>
+        </button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/day-hourly">
+          <mat-icon>today</mat-icon>
+          <span>Day hourly</span>
+        </button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/hour">
+          <mat-icon>av_timer</mat-icon>
+          <span>Hour</span>
+        </button>
+
+        <button mat-menu-item routerLinkActive="active" routerLink="/reportage">
+          <mat-icon>dashboard</mat-icon>
+          <span>Reportage</span>
+        </button>
+      </mat-menu>
+
+      <button mat-menu-item [matMenuTriggerFor]="dxy">
+        <mat-icon>chrome_reader_mode</mat-icon>
+        <span>DXY</span>
+      </button>
+      <mat-menu #dxy="matMenu">
+        <button mat-menu-item routerLinkActive="active" routerLink="/dxy-week">
+          <mat-icon>date_range</mat-icon>
+          <span>Week</span>
+        </button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/dxy-day">
+          <mat-icon>today</mat-icon>
+          <span>Day</span>
+        </button>
+      </mat-menu>
+
+      <button mat-menu-item [matMenuTriggerFor]="upload">
+        <mat-icon>cloud_upload</mat-icon>
+        <span>Upload</span>
+      </button>
+
+      <mat-menu #upload="matMenu">
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-order-daily">order</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-hour">4h real predict(Deprecated)</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-hourly">1h real</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-hour-real">4h real</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-hour-predict">4h predict</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-day-pre">Day Predict</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-day-real">Day Real</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-week-pre">Week Predict</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-week-real">Week Real</button>
+        <button mat-menu-item routerLinkActive="active" routerLink="/upload-dxy">DXY real</button>
+
+      </mat-menu>
+
+    </mat-menu>
+  </mat-toolbar>
+</div>
+
+
+<router-outlet></router-outlet>
+
