@@ -78,6 +78,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {EnigmaComponent} from "./enigma/enigma.component";
 
 export const MY_FORMATS = {
   parse: {
@@ -146,6 +147,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     ConditionHomeComponent,
     ConditionModificationComponent,
     ConditionListComponent,
+    EnigmaComponent
   ],
   imports: [
     BrowserModule,
@@ -178,6 +180,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     MatStepperModule,
     MatSelectModule,
     MatCommonModule,
+
     RouterModule.forRoot([
       {path: 'conditions', component: ConditionHomeComponent},
       {path: 'dxy-week', component: DxyWeekHomeComponent},
@@ -200,7 +203,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
       {path: 'reportage', component: CandleProcessPickerComponent},
       {path: 'orders', component: OrderComponent},
       {path: 'home', component: HomeComponent},
-      {path: '', component: HomeComponent},
+      {path: '', component: EnigmaComponent},
     ]),
     MatCheckboxModule,
     MatSlideToggleModule,

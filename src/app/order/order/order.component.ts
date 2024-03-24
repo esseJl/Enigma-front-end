@@ -95,7 +95,14 @@ export class OrderComponent implements OnInit {
     })
       .afterClosed().subscribe(result => {
       if (result) {
-        this.update();
+        //this.update();
+        let index = this.orders.findIndex(value => value.id == result.id);
+        //console.log(index);
+        if (index) {
+          this.orders[index] = result;
+        }
+        this.orders.splice(index, 1, result);
+        console.log(this.orders[index]);
       }
     });
   }

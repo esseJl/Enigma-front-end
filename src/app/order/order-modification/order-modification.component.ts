@@ -74,7 +74,7 @@ export class OrderModificationComponent implements OnInit {
         .subscribe(res => {
           //console.log(res);
           this.loading = false;
-          this.dialogRef.close(true);
+          this.dialogRef.close(res);
         }, error => {
           //console.log(error);
           this.error = error.error as Error;
@@ -93,7 +93,7 @@ export class OrderModificationComponent implements OnInit {
         .subscribe(res => {
           //console.log(res);
           this.loading = false;
-          this.dialogRef.close(true);
+          this.dialogRef.close(res);
         }, error => {
           //console.log(error);
           this.error = error.error as Error;
