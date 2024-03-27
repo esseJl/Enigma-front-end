@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
@@ -79,6 +79,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {EnigmaComponent} from "./enigma/enigma.component";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {initializeKeycloak} from "./init/keycloak-init.factory";
+import {AuthGuard} from "./guard/auth.guard";
 
 export const MY_FORMATS = {
   parse: {
@@ -150,6 +153,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     EnigmaComponent
   ],
   imports: [
+    KeycloakAngularModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -182,28 +186,28 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     MatCommonModule,
 
     RouterModule.forRoot([
-      {path: 'conditions', component: ConditionHomeComponent},
-      {path: 'dxy-week', component: DxyWeekHomeComponent},
-      {path: 'dxy-day', component: DxyDayHomeComponent},
-      {path: 'hour', component: CandleHourHomeComponent},
-      {path: 'day', component: CandleDayHomeComponent},
-      {path: 'day-hourly', component: CandleDayHourlyComponent},
-      {path: 'week', component: CandleWeekHomeComponent},
-      {path: 'upload-order-daily', component: UploadOrderN1d1Component},
-      {path: 'upload-hour', component: UploadComponent},
-      {path: 'upload-hour-predict', component: UploadHourPreComponent},
-      {path: 'upload-hour-real', component: UploadHourRealComponent},
-      {path: 'upload-hourly', component: UploadCandleHourlyComponent},
-      {path: 'upload-day-pre', component: UploadDayPreComponent},
-      {path: 'upload-day-real', component: UploadDayRealComponent},
-      {path: 'upload-week-pre', component: UploadWeekPreComponent},
-      {path: 'upload-week-real', component: UploadWeekRealComponent},
-      {path: 'upload-min-real', component: UploadMinRealComponent},
-      {path: 'upload-dxy', component: UploadDxyComponent},
-      {path: 'reportage', component: CandleProcessPickerComponent},
-      {path: 'orders', component: OrderComponent},
-      {path: 'home', component: HomeComponent},
-      {path: '', component: EnigmaComponent},
+      {path: 'conditions', component: ConditionHomeComponent, canActivate: [AuthGuard]},
+      {path: 'dxy-week', component: DxyWeekHomeComponent, canActivate: [AuthGuard]},
+      {path: 'dxy-day', component: DxyDayHomeComponent, canActivate: [AuthGuard]},
+      {path: 'hour', component: CandleHourHomeComponent, canActivate: [AuthGuard]},
+      {path: 'day', component: CandleDayHomeComponent, canActivate: [AuthGuard]},
+      {path: 'day-hourly', component: CandleDayHourlyComponent, canActivate: [AuthGuard]},
+      {path: 'week', component: CandleWeekHomeComponent, canActivate: [AuthGuard]},
+      {path: 'upload-order-daily', component: UploadOrderN1d1Component, canActivate: [AuthGuard]},
+      {path: 'upload-hour', component: UploadComponent, canActivate: [AuthGuard]},
+      {path: 'upload-hour-predict', component: UploadHourPreComponent, canActivate: [AuthGuard]},
+      {path: 'upload-hour-real', component: UploadHourRealComponent, canActivate: [AuthGuard]},
+      {path: 'upload-hourly', component: UploadCandleHourlyComponent, canActivate: [AuthGuard]},
+      {path: 'upload-day-pre', component: UploadDayPreComponent, canActivate: [AuthGuard]},
+      {path: 'upload-day-real', component: UploadDayRealComponent, canActivate: [AuthGuard]},
+      {path: 'upload-week-pre', component: UploadWeekPreComponent, canActivate: [AuthGuard]},
+      {path: 'upload-week-real', component: UploadWeekRealComponent, canActivate: [AuthGuard]},
+      {path: 'upload-min-real', component: UploadMinRealComponent, canActivate: [AuthGuard]},
+      {path: 'upload-dxy', component: UploadDxyComponent, canActivate: [AuthGuard]},
+      {path: 'reportage', component: CandleProcessPickerComponent, canActivate: [AuthGuard]},
+      {path: 'orders', component: OrderComponent, canActivate: [AuthGuard]},
+      {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+      {path: '', component: EnigmaComponent, canActivate: [AuthGuard]},
     ]),
     MatCheckboxModule,
     MatSlideToggleModule,
@@ -219,7 +223,12 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
       useClass: CustomNgxDatetimeAdapter,
       deps: [MAT_DATE_LOCALE, NGX_MAT_MOMENT_DATE_ADAPTER_OPTIONS]
     },
-
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    }
   ],
   bootstrap: [AppComponent]
 })
