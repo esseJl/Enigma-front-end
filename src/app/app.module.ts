@@ -10,7 +10,6 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatCommonModule, MatNativeDateModule} from "@angular/material/core";
 import {RouterModule} from "@angular/router";
 import {CustomNgxDatetimeAdapter} from "./custom-ngx-date-time-adapter";
-
 import {HomeComponent} from "./home/home.component";
 import {OrderComponent} from "./order/order/order.component";
 import {CandleProcessPickerComponent} from "./candle-process-picker/candle-process-picker.component";
@@ -82,6 +81,10 @@ import {EnigmaComponent} from "./enigma/enigma.component";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {AuthGuard} from "./guard/auth.guard";
+import {TradeAccountTableComponent} from './trade-account/trade-account-table/trade-account-table.component';
+import {
+  TradeAccountModificationComponent
+} from "./trade-account/trade-account-modification/trade-account-modification.component";
 
 export const MY_FORMATS = {
   parse: {
@@ -150,7 +153,9 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     ConditionHomeComponent,
     ConditionModificationComponent,
     ConditionListComponent,
-    EnigmaComponent
+    EnigmaComponent,
+    TradeAccountTableComponent,
+    TradeAccountModificationComponent
   ],
   imports: [
     KeycloakAngularModule,
@@ -186,7 +191,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     MatCommonModule,
 
     RouterModule.forRoot([
-      {path: 'conditions', component: ConditionHomeComponent, canActivate: [AuthGuard]},
+      {path: 'trade-account', component: TradeAccountTableComponent, canActivate: [AuthGuard]},
       {path: 'dxy-week', component: DxyWeekHomeComponent, canActivate: [AuthGuard]},
       {path: 'dxy-day', component: DxyDayHomeComponent, canActivate: [AuthGuard]},
       {path: 'hour', component: CandleHourHomeComponent, canActivate: [AuthGuard]},

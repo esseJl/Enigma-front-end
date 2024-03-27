@@ -14,6 +14,9 @@ export class AppComponent {
       .subscribe((event) => {
         if (event instanceof NavigationEnd)
           switch (event.url) {
+            case '/trade-account':
+              this.title = "Trade Account"
+              break;
             case '/home':
             case '/':
               this.title = 'Home'
@@ -55,23 +58,23 @@ export class AppComponent {
               this.title = 'upload xauusd day pre'
               break;
             case '/upload-day-real':
-                            this.title = 'upload xauusd day real'
-                            break;
-                        case '/upload-week-pre':
-                            this.title = 'upload xauusd week pre'
-                            break;
-                        case '/upload-week-real':
-                            this.title = 'upload xauusd week real'
-                            break;
-                        case '/upload-min-real':
-                            this.title = 'upload xauusd min real'
-                            break;
-                        case '/upload-dxy':
-                            this.title = 'upload DXY'
-                            break;
-                        default:
-                            this.title = '';
-                    }
-            });
-    }
+              this.title = 'upload xauusd day real'
+              break;
+            case '/upload-week-pre':
+              this.title = 'upload xauusd week pre'
+              break;
+            case '/upload-week-real':
+              this.title = 'upload xauusd week real'
+              break;
+            case '/upload-min-real':
+              this.title = 'upload xauusd min real'
+              break;
+            case '/upload-dxy':
+              this.title = 'upload DXY'
+              break;
+            default:
+              this.title = 'title does not set yet.';
+          }
+      });
+  }
 }

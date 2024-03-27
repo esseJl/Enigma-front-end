@@ -336,3 +336,11 @@ export interface Condition {
   name: string,
   description: string
 }
+
+export interface TradeAccount {
+  id: number,
+  username: string,
+  password: string,
+  server: string,
+  active: boolean
+}
