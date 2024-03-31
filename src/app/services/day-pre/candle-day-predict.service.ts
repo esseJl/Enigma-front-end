@@ -9,6 +9,6 @@ import {DataService} from "../data.service";
 export class CandleDayPredictService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/candle/day/predict', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/candle/day/predict', http);
   }
 }

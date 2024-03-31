@@ -8,6 +8,6 @@ import {environment} from "../../../environments/environment";
 })
 export class HourSatService extends DataService {
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/candle/hour/sat', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/candle/hour/sat', http);
   }
 }

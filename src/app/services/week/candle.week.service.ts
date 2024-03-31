@@ -8,6 +8,6 @@ import {Injectable} from "@angular/core";
 })
 export class CandleWeekService extends DataService {
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/candle/week', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/candle/week', http);
   }
 }

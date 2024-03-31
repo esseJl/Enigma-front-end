@@ -8,6 +8,6 @@ import {environment} from "../../../environments/environment";
 })
 export class ConditionService extends DataService {
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/conditions', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/conditions', http);
   }
 }

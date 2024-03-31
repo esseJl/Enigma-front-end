@@ -9,6 +9,6 @@ import {environment} from "../../../environments/environment";
 export class DxyDayService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/candle/day', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/candle/day', http);
   }
 }

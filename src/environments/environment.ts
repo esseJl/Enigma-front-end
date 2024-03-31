@@ -1,15 +1,14 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
 export const environment = {
-  production: false,
-  translateServiceUrl: 'http://' + location.hostname + ':8080',
-  dataSource5m: 'http://' + location.hostname + ':8081',
-  tradeHistoryUrl: 'http://' + location.hostname + ':8081',
-  keycloakUrl: 'http://' + location.hostname + ':9090',
-  keycloakRealm: 'enigma',
-  keycloakClient: 'enigma-client'
+    production: false,
+    TRANSLATE_SERVICE_BASE_PATH: 'http://' + location.hostname + ':8080',
+    dataSource5m: 'http://' + location.hostname + ':8081',
+    tradeHistoryUrl: 'http://' + location.hostname + ':8081',
+    KEYCLOAK_URL: 'http://' + location.hostname + ':9090',
+    KEYCLOAK_REALM: 'enigma',
+    KEYCLOAK_CLIENT_ID: 'enigma-client'
 };
 
 /*

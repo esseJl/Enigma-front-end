@@ -9,6 +9,6 @@ import {environment} from "../../../environments/environment";
 export class N3dmService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/orders/N3DM', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/orders/N3DM', http);
   }
 }

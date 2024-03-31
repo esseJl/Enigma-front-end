@@ -17,7 +17,11 @@ export class OrderComponent implements OnInit {
   loading: boolean = false;
   orders: Order[] = [];
   searchOrder: SearchOrder = {} as SearchOrder;
-  strategies: string[] = ['N1D1', 'N1D2', 'N4D1', 'N4D2', 'N2DP', 'N2DZ', 'N2DM', 'N3DP', 'N3DZ', 'N3DM'];
+  strategies: string[] = ['N1D1', 'O1D1', 'N1D2', 'O1D2',
+    'N2DZ', 'O2DZ', 'N2DM', 'O2DM',
+    'N3DP', 'O3DP', 'N3DZ', 'O3DZ',
+    'N3DM', 'O3DM', 'N4D1', 'O4D1', 'N4D2', 'O4D2',
+  ];
   activeStrategy: string = this.strategies[0];
   report: Report;
   fromDate: string = null;

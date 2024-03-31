@@ -9,6 +9,6 @@ import {environment} from "../../../environments/environment";
 export class OrderService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/orders', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/orders', http);
   }
 }

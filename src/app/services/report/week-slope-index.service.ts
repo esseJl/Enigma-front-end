@@ -8,6 +8,6 @@ import {environment} from "../../../environments/environment";
 })
 export class WeekSlopeIndexService extends DataService {
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/candle/week/slope/index', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/candle/week/slope/index', http);
   }
 }

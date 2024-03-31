@@ -1,5 +1,5 @@
 <div>
-  <div class="table-container" [ngClass]="(loading?'disable-content':'')">
+  <div class="table-container" style="margin-top: 4rem" [ngClass]="(loading?'disable-content':'')">
     <app-order-table [orders]="orders"
                      (onChange)="onChange($event)"
                      (onDelete)="delete($event)"
@@ -9,9 +9,9 @@
     <mat-progress-bar color="primary" mode="query"></mat-progress-bar>
   </section>
 
-  <div class="fixed-option-container">
+  <div class="fixed-option-container" *ngIf="report!=null" [ngClass]="(loading?'disable-content':'')">
     <div>
-      <mat-form-field class="option-search-st" style="width: 90px;" appearance="fill">
+      <mat-form-field class="option-search-st" style="width: 90px;" appearance="outline">
         <mat-label>Strategy :</mat-label>
         <mat-select [value]="activeStrategy" (selectionChange)="strategyOnChange($event.value)">
           <mat-option *ngFor="let strategy of strategies" [value]="strategy">
@@ -19,7 +19,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="option-search-st" style="width: 170px;" appearance="fill">
+      <mat-form-field class="option-search-st" style="width: 170px;" appearance="outline">
         <mat-label>From Date :</mat-label>
         <input type="text"
                readonly
@@ -34,7 +34,7 @@
         <mat-datepicker-toggle matSuffix [for]="dpFrom"></mat-datepicker-toggle>
         <mat-datepicker #dpFrom disabled="false"></mat-datepicker>
       </mat-form-field>
-      <mat-form-field class="option-search-st" style="width: 170px;" appearance="fill">
+      <mat-form-field class="option-search-st" style="width: 170px;" appearance="outline">
         <mat-label>To Date :</mat-label>
         <input type="text"
                readonly
@@ -51,7 +51,7 @@
       </mat-form-field>
     </div>
     <div class="option-search-report">
-      <ul *ngIf="report!=null" [ngClass]="(loading?'disable-content':'')">
+      <ul>
         <li>
           balance :
           <span [ngClass]="report?.balance>0?'bg-success':'bg-danger'">

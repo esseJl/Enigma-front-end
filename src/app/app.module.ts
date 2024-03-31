@@ -85,6 +85,7 @@ import {TradeAccountTableComponent} from './trade-account/trade-account-table/tr
 import {
   TradeAccountModificationComponent
 } from "./trade-account/trade-account-modification/trade-account-modification.component";
+import {LoginComponent} from './login/login.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -155,7 +156,8 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     ConditionListComponent,
     EnigmaComponent,
     TradeAccountTableComponent,
-    TradeAccountModificationComponent
+    TradeAccountModificationComponent,
+    LoginComponent
   ],
   imports: [
     KeycloakAngularModule,
@@ -191,6 +193,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     MatCommonModule,
 
     RouterModule.forRoot([
+      {path: 'login', component: LoginComponent},
       {path: 'trade-account', component: TradeAccountTableComponent, canActivate: [AuthGuard]},
       {path: 'dxy-week', component: DxyWeekHomeComponent, canActivate: [AuthGuard]},
       {path: 'dxy-day', component: DxyDayHomeComponent, canActivate: [AuthGuard]},

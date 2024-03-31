@@ -9,6 +9,6 @@ import {HttpClient} from "@angular/common/http";
 export class CandleHourService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/candle/hour', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/candle/hour', http);
   }
 }

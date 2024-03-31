@@ -7,7 +7,7 @@ import {environment} from "../../../environments/environment";
 })
 export class SearchService {
 
-  url = environment.translateServiceUrl + '/orders/search';
+  url = environment.TRANSLATE_SERVICE_BASE_PATH + '/orders/search';
 
   constructor(private http: HttpClient) {
   }

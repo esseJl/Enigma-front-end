@@ -7,14 +7,17 @@ export function initializeKeycloak(
   return () =>
     keycloak.init({
       config: {
-        url: environment.keycloakUrl,
-        realm: environment.keycloakRealm,
-        clientId: environment.keycloakClient,
+        url: environment.KEYCLOAK_URL,
+        realm: environment.KEYCLOAK_REALM,
+        clientId: environment.KEYCLOAK_CLIENT_ID,
       },
       initOptions: {
         onLoad: 'check-sso',
         silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html'
+          window.location.origin + '/assets/silent-check-sso.html',
+        //redirectUri: 'http://' + location.hostname + ':' + location.port + '/',
+        // this will solved the error
+        //checkLoginIframe: false
       },
       shouldAddToken: (request) => {
         const {method, url} = request;

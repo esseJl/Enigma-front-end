@@ -9,6 +9,6 @@ import {Injectable} from "@angular/core";
 })
 export class CandleDayService extends DataService {
   constructor(http: HttpClient) {
-    super(environment.translateServiceUrl + '/candle/day', http);
+    super(environment.TRANSLATE_SERVICE_BASE_PATH + '/candle/day', http);
   }
 }
