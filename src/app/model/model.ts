@@ -344,3 +344,24 @@ export interface TradeAccount {
   server: string,
   active: boolean
 }
+
+export interface History {
+  id: number
+  accountId: any
+  entryDate: string
+  expireDate: string
+  strategy: string
+  symbol: string
+  ticket: string
+  type: string
+  volume: number
+  sl: number
+  tp: number
+  entryPrice: number
+  winRate1: number
+  winRate2: number
+  winRate3: number
+  profit: any
+  exitPrice: any
+  exitDate: any
+}

@@ -37,4 +37,9 @@ export class DataService {
     return this.http.options(this.url);
   }
 
+  findHistory(userId: number, resource: any) {
+    const headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
+    return this.http.post(this.url + '/find/' + userId, JSON.stringify(resource), {headers: headers});
+  }
+
 }

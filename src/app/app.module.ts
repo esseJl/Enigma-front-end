@@ -85,7 +85,10 @@ import {TradeAccountTableComponent} from './trade-account/trade-account-table/tr
 import {
   TradeAccountModificationComponent
 } from "./trade-account/trade-account-modification/trade-account-modification.component";
-import {LoginComponent} from './login/login.component';
+import {HistoryTableComponent} from './history/history-table/history-table.component'; // AG Grid Component
+import {AgGridAngular} from 'ag-grid-angular'; // AG Grid Component
+import {ColDef} from 'ag-grid-community';
+import {HistoryAgComponent} from './history/history-ag/history-ag.component'; // Column Definition Type Interface
 
 export const MY_FORMATS = {
   parse: {
@@ -157,9 +160,12 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     EnigmaComponent,
     TradeAccountTableComponent,
     TradeAccountModificationComponent,
-    LoginComponent
+    HistoryTableComponent,
+    HistoryAgComponent,
+
   ],
   imports: [
+    AgGridAngular,
     KeycloakAngularModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -191,9 +197,9 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
     MatStepperModule,
     MatSelectModule,
     MatCommonModule,
-
     RouterModule.forRoot([
-      {path: 'login', component: LoginComponent},
+      {path: 'history/:userId', component: HistoryAgComponent, canActivate: [AuthGuard]},
+      //{path: 'history/:userId', component: HistoryTableComponent, canActivate: [AuthGuard]},
       {path: 'trade-account', component: TradeAccountTableComponent, canActivate: [AuthGuard]},
       {path: 'dxy-week', component: DxyWeekHomeComponent, canActivate: [AuthGuard]},
       {path: 'dxy-day', component: DxyDayHomeComponent, canActivate: [AuthGuard]},
